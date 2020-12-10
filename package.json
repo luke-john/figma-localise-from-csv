@@ -1,0 +1,61 @@
+{
+    "name": "figma-localise-from-csv",
+    "version": "1.0.0",
+    "source": "code/code.ts",
+    "targets": {
+        "main": false,
+        "app": {
+            "distDir": "dist"
+        }
+    },
+    "browserslist": [
+        "last 1 Chrome version"
+    ],
+    "description": "For each content row in a csv, duplicates a frame, replacing any text content which matches a columns title",
+    "main": "code.js",
+    "scripts": {
+        "typecheck": "tsc --noEmit",
+        "build": "rollup --config rollup.config.js",
+        "watch": "rollup --config rollup.config.js --watch",
+        "format:check": "prettier --check \"src/**/*.{ts, tsx}\"",
+        "lint:check": "eslint \"src/**/*.{js,ts,tsx}\"",
+        "verify": "yarn format:check && yarn lint:check",
+        "test": "jest",
+        "test:watch": "yarn test --watch"
+    },
+    "author": "",
+    "license": "",
+    "devDependencies": {
+        "@figma/plugin-typings": "^1.17.1",
+        "@rollup/plugin-commonjs": "^15.0.0",
+        "@rollup/plugin-node-resolve": "^9.0.0",
+        "@rollup/plugin-replace": "^2.3.3",
+        "@types/jest": "^26.0.14",
+        "@types/react": "^16.9.46",
+        "@types/react-dom": "^16.9.8",
+        "@typescript-eslint/eslint-plugin": "^4.1.0",
+        "@typescript-eslint/parser": "^4.1.0",
+        "eslint": "^7.8.1",
+        "eslint-plugin-prettier": "^3.1.4",
+        "jest": "^26.6.0",
+        "postcss-import": "^12.0.1",
+        "prettier": "^2.1.0",
+        "react": "^16.13.1",
+        "react-dom": "^16.13.1",
+        "rollup": "^2.26.4",
+        "rollup-plugin-html-bundle": "^0.0.3",
+        "rollup-plugin-node-builtins": "^2.1.2",
+        "rollup-plugin-postcss": "^3.1.6",
+        "rollup-plugin-scss": "^2.6.0",
+        "rollup-plugin-typescript2": "^0.27.2",
+        "serialize-error": "^7.0.1",
+        "ts-jest": "^26.4.1",
+        "typescript": "^4.0.2"
+    },
+    "dependencies": {
+        "drah-client": "^0.1.1",
+        "drah-server": "^0.1.1",
+        "js-csvparser": "^1.5.0",
+        "react-figma-plugin-ds": "^2.0.5"
+    }
+}
