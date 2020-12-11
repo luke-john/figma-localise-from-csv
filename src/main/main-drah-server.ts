@@ -4,8 +4,8 @@ import { runLocalisation } from './runLocalisation';
 export const mainDrahServer = new DrahServer({
     handlers: {
         runLocalisation,
-        setPluginData: (parameters: Parameters<typeof figma.root.setPluginData>) => figma.root.setPluginData(...parameters),
-        getPluginData: (parameters: Parameters<typeof figma.root.getPluginData>) => figma.root.getPluginData(...parameters),
+        setPluginData: (...parameters: Parameters<typeof figma.root.setPluginData>) => figma.root.setPluginData(...parameters),
+        getPluginData: (...parameters: Parameters<typeof figma.root.getPluginData>) => figma.root.getPluginData(...parameters),
     },
     sendToClient: (message: string) => {
         figma.ui.postMessage({

@@ -1,8 +1,8 @@
-import { DrahClient } from 'drah-client';
+import { getRichDrahClient } from 'drah-client';
 
 import type { MainDrahServerActions } from '../main/main-drah-server';
 
-export const mainDrahClient = new DrahClient<MainDrahServerActions>({
+export const mainDrahClient = getRichDrahClient<MainDrahServerActions>({
     sendToServer: (serializedData) => {
         window.parent.postMessage(
             {

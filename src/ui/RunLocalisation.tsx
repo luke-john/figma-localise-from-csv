@@ -29,7 +29,7 @@ export function RunLocalisation({ sourceColumn, translationColumn, csv, optional
         <div>
             <Button
                 onClick={async function E() {
-                    const selection = await mainDrahClient.process('runLocalisation', { translations, optionalTextToAppendToLocalisedNodeName });
+                    const selection = await mainDrahClient.runLocalisation({ translations, optionalTextToAppendToLocalisedNodeName });
 
                     console.log(selection);
                 }}

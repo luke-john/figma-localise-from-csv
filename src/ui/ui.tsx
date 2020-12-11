@@ -48,8 +48,8 @@ function App({ initialSourceColumn, initialTranslationColumn }: { initialSourceC
 
 async function setupApp() {
     // this should only take milliseconds
-    const storedPluginDataSourceColumn = await mainDrahClient.process('getPluginData', ['sourceColumn']);
-    const storedPluginDataTranslationColumn = await mainDrahClient.process('getPluginData', ['translationColumn']);
+    const storedPluginDataSourceColumn = await mainDrahClient.getPluginData('sourceColumn');
+    const storedPluginDataTranslationColumn = await mainDrahClient.getPluginData('translationColumn');
 
     ReactDom.render(<App initialSourceColumn={storedPluginDataSourceColumn} initialTranslationColumn={storedPluginDataTranslationColumn} />, document.getElementById('react-app'));
 }

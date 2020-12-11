@@ -25,7 +25,7 @@ export function SelectSourceAndTranslationColumns(props: Props) {
                 className=""
                 defaultValue={props.sourceAndTranslationColumns[0]}
                 onChange={function E(e) {
-                    mainDrahClient.process('setPluginData', ['sourceColumn', e.value as string]);
+                    mainDrahClient.setPluginData('sourceColumn', e.value as string);
                     props.setSourceAndTranslationColumns([e.value as string, props.sourceAndTranslationColumns[1]]);
                 }}
                 onExpand={function E() {}}
@@ -39,7 +39,7 @@ export function SelectSourceAndTranslationColumns(props: Props) {
                 className=""
                 defaultValue={props.sourceAndTranslationColumns[1]}
                 onChange={function E(e) {
-                    mainDrahClient.process('setPluginData', ['translationColumn', e.value as string]);
+                    mainDrahClient.setPluginData('translationColumn', e.value as string);
                     props.setSourceAndTranslationColumns([props.sourceAndTranslationColumns[0], e.value as string]);
                 }}
                 onExpand={function E() {}}

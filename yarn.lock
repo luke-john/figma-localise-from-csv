@@ -2089,24 +2089,24 @@ dot-prop@^5.2.0:
   dependencies:
     is-obj "^2.0.0"
 
-drah-client@^0.1.1:
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/drah-client/-/drah-client-0.1.1.tgz#0abd280571ae3689fa908abf2e546c844e525ee0"
-  integrity sha512-UNXV9WsEfJVbrbbzRAp8iQrdXMPN5P0fr/Dyi/V6L7UYPwkI0K1+1et+ECW6QtIWwUYqaltFas4pp9VMB+M9rQ==
+drah-client@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/drah-client/-/drah-client-0.2.0.tgz#8b53707caaf3c2fbe2327b166a3d1c4b65d09d14"
+  integrity sha512-+DYUplrNUCQXQXkPvTcZBQLsoBCa4KXEy0BztM7E4jRDLh84qadJETapSAApYZcWUMvgMeRN8NOVMYQn3MvvmQ==
   dependencies:
-    drah-shared "0.1.1"
+    drah-shared "0.2.0"
 
-drah-server@^0.1.1:
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/drah-server/-/drah-server-0.1.1.tgz#efda11a65c09e22c7ace46f7dc305370dec83f64"
-  integrity sha512-NfhYItRx7kq/wT1+FqOnhjeZNWC/yOQ4/WC23pPuoANH3BZXpwxzaP2NcIrkFdcTUpyryaA/eE4j/QzWoaQbyg==
+drah-server@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/drah-server/-/drah-server-0.2.0.tgz#4e7ddb11ba6dc8a815eb1bb79948f5cf8661fbf5"
+  integrity sha512-J0Tr0gl8hFatSkpybXXe1Z3asd961FXxMs2ScrWzd8aNYij0WnTfw4YEPNkGfCi38m+Xwrv7MI4KpfPw1/05lQ==
   dependencies:
-    drah-shared "0.1.1"
+    drah-shared "0.2.0"
 
-drah-shared@0.1.1:
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/drah-shared/-/drah-shared-0.1.1.tgz#22fae27547cdf3c38dc8e9d8e285ff0fc109a918"
-  integrity sha512-3tq4KgRZZ6OtKtVr011eZur48+0Em5djnDnieptoZ/jtkCYcKwlbzDRSXfsGW1fnjj95Fvn1P2o0dVCjiSczjA==
+drah-shared@0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/drah-shared/-/drah-shared-0.2.0.tgz#f734adee4831e0df19d43103123d61842a58bb72"
+  integrity sha512-2TL7lFkI4c9H85umf57BjmaMTns1cF8h9o0fR/+JMhvJTxC2Zv5h8chzWsfzcdj9j42G8RExbRUeXobFP6FjCg==
   dependencies:
     serialize-error "^7.0.1"
 
