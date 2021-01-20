@@ -2089,10 +2089,10 @@ dot-prop@^5.2.0:
   dependencies:
     is-obj "^2.0.0"
 
-drah-client@^0.2.0:
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/drah-client/-/drah-client-0.2.0.tgz#8b53707caaf3c2fbe2327b166a3d1c4b65d09d14"
-  integrity sha512-+DYUplrNUCQXQXkPvTcZBQLsoBCa4KXEy0BztM7E4jRDLh84qadJETapSAApYZcWUMvgMeRN8NOVMYQn3MvvmQ==
+drah-client@^0.2.1:
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/drah-client/-/drah-client-0.2.1.tgz#2f2e656b50e9494221c18d510889b7f061d9e4fb"
+  integrity sha512-TNDWnertyBF0U6q2W6AXncsFd+4MASoyU/u7TGnz3O1lu6o0ImOBq9NWD8QSCALidZ8F+ezJ9qMCqC8fO+44OQ==
   dependencies:
     drah-shared "0.2.0"
 
