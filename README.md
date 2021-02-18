@@ -2,75 +2,62 @@
 
 ## Docs
 
-### Transformation Logic
+### Expected source format
 
-There are two modes supported by this plugin, translation per row or column. (per row not currently implemented)
+This expects a title row with the first column for Source, and additional columms for each language to be translated.
 
-#### Horizontal mode
+ie. (note, these are not actual translations).
 
-In horizontal mode the plugin has four key user interactions (note: 1 and 2 do not need to occur sequentially).
+```csv
+Source,lang1,lang2,lang3,...
+"What","Чего","Woraus","Que","¿A qué?",...
+"I","Я","Wo","Je","A",...
+```
+
+It also has support for;
+
+-   basic HTML tags (b, i, u)
+-   converting some special strings
+    -   `{{__NB_SPACE__}}` -> not-breaking space
+    -   `{{__NB_HYPHEN__}}` -> not-breaking hyphen
+
+For use of the b and i html tags, this plugin requires the original node that is being translated to use a font which has `italic`, `bold` and `bold italic` styles available.
+
+### Plugin Guide
+
+The plugin has three key user interactions (note: 1 and 2 do not need to occur sequentially).
 
 1. select a node to localise
 2. load a csv
-3. select the source and translation columns
-4. localise
+3. localise
 
-##### 1. select a node (source node) to localise
+#### 1. select a node (original node) to localise
 
 While the plugin is running, the user needs to be able to select a node in the ui, and have feedback in the plugin ui which node has been selected.
 
-##### 2. load a csv
+#### 2. load a csv
 
 In the ui the user needs to be able to upload a csv file, which will later be available to localise.
 
 Once a csv has been uploaded, a preview of it should be available, along with the ability to replace it.
 
-##### 3. select which columns should be treated as the source and translation columns
+#### 3. localise
 
-Once a csv has been uploaded, the user needs to be able to select which from which column text nodes names should be searched, and which column their characters replaced with.
+Once a csv has been loaded, and an original node to localise has been selected, the user needs to be able to run the localisation.
 
-##### 4. localise
+For each language column in the loaded csv, this should;
 
-Once a csv has been loaded, a source node to localise and source and translation columns have been selected, the user needs to be able to run the localisation.
+-   duplicate the original node,
+-   replace any text nodes inside the duplicated node which have an id that matches an entry in the the Source column.
 
-The plugin should first duplicate the node (placing the new one immediately adjacent).
+    when replacing, this should;
 
-Then for each content row in the csv, this should;
+    -   handle basic html tags (b, u, i)
+    -   convert some special strings
+        -   `{{__NB_SPACE__}}` -> not-breaking space
+        -   `{{__NB_HYPHEN__}}` -> not-breaking hyphen
 
--   search the duplicated node for ids which match the source column, replacing the content with the translation column value.
-
-#### Vertical mode (not implemented)
-
-In vertical mode the plugin has three or four key user interactions (note: 1 and 2 do not need to occur sequentially).
-
-1. select a node to localise
-2. load a csv
-3. select which column should be appended to localised version (optional)
-4. localise
-
-##### 1. select a node (source node) to localise
-
-While the plugin is running, the user needs to be able to select a node in the ui, and have feedback in the plugin ui which node has been selected.
-
-##### 2. load a csv
-
-In the ui the user needs to be able to upload a csv file, which will later be available to localise.
-
-Once a csv has been uploaded, a preview of it should be available, along with the ability to replace it.
-
-##### 3. select which column should be appended to localised version (optional)
-
-Once a csv has been uploaded, users should be able to select a column that will be appended to the duplicated version of the source nodes title.
-
-##### 4. localise
-
-Once a csv has been loaded, and a source node to localise has been selected, the user needs to be able to run the localisation.
-
-For each content row in a csv, this should;
-
--   duplicate the source node,
--   replace any text nodes inside the duplicated node which have an id that matches one of the csv rows columns title
--   if a column has been selected to append to the localised version, append its value to the duplicated nodes title
+-   append the language name to the duplicated nodes title
 
 ## Development
 
@@ -110,47 +97,3 @@ Under **Link existing plugin** click to choose a manifest.json file and select t
 Then from a file which has been setup for the plugin; open the plugin from any page, and click the **run** button.
 
 A plugin testing file exists at https://www.figma.com/file/BkQK2RVWhGdByspbZYvlAH/PLUGIN-TESTING?node-id=1%3A3.
-
-### Plugin structure and peculiarities
-
-To understand how plugins run in Figma, please read https://www.figma.com/plugin-docs/how-plugins-run/.
-
-Essentially you have two environments known as `main` and `ui`.
-
-#### main
-
-The `main` is run in a [jsvm sandbox](https://github.com/ftk/quickjspp) which does not give you the ability to set breakpoints, debug in the browser, or inspect crashes beyond what is logged (you also don't have access to the original stacktrace/error in the crash, but rather a textual "clone" of the stack trace).
-
-The main thread can access the Figma "scene" (i.e. the hierarchy of layers that make up a Figma document) but not the browser APIs.
-
-Because of the nature of how the code in main works, using traditional functions makes troubleshooting easier.
-
-Also, in development pointer reference errors have been encountered, which appears to be an issue with the virtual machine not clearing memory across runs.
-
-Closing figma and reopening seems to resolve this issue (error messages are cryptic and the specific messages were not captured while troubleshooting).
-
-#### ui
-
-The `ui` is run in an iframe with location set to `null`.
-
-The iframe can access the browser APIs but not the Figma "scene."
-
-#### communication between `main` and `ui`
-
-The main thread and the iframe can communicate with each other through message passing, the apis are slightly different per environment.
-
--   main https://www.figma.com/plugin-docs/api/figma-ui/
-
-    `figma.ui.postMessage`, `figma.ui.onmessage`, `figma.ui.on`, `figma.ui.once`, `figma.ui.off`
-
--   code https://www.figma.com/plugin-docs/creating-ui/
-
-    `parent.postMessage`, `window.onmessage`
-
-To faciliate messaging some communication helpers have been setup under `src/ui/actions` and `src/main/actions` using a tool we've built that allows you to write functions that are run in another environment with minimal setup https://github.com/luke-john/drah.
-
-Main (`src/main/actions`) has a **MainActionClient** and **UiActionProcessor**.
-
-Ui (`src/ui/actions`) has a **UiActionClient** and **MainActionProcessor**.
-
-To communicate from `ENVIRONMENT_1:(Main|Ui)` to `ENVIRONMENT_2:(Main|Ui)` add a handler to the `ENVIRONMENT_1ActionProcessor` in the `src/ENVIRONMENT_2/actions` file. You will now be able to use the `ENVIRONMENT_1ActionClient` by calling ``ENVIRONMENT_1ActionClient['handler-key'], handlerOptions)`.
