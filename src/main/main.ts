@@ -5,7 +5,7 @@
 import './main-drah-server';
 
 // This shows the HTML page in "ui.html".
-figma.showUI(__html__, { width: 400, height: 500 });
+figma.showUI(__html__, { width: 400, height: 200 });
 
 // This needs to be loaded prior to adding text via the plugin, otherwise the script will crash.
 figma.loadFontAsync({ family: 'Roboto', style: 'Regular' });
