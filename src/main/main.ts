@@ -2,7 +2,7 @@
 // You can access browser APIs in the <script> tag inside "ui.html" which has a
 // full browser environment (see documentation).
 
-import './main-drah-server';
+import './drahMain';
 
 // This shows the HTML page in "ui.html".
 figma.showUI(__html__, { width: 400, height: 200 });

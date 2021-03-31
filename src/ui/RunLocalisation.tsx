@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import { Button } from 'react-figma-plugin-ds';
 
-import { mainDrahClient } from './main-drah-client';
+import { drahMainClient } from './drahUI';
 import { CsvData } from './CsvLoader';
 
 type Props = {
@@ -14,7 +14,7 @@ export function RunLocalisation({ csv }: Props) {
         <div>
             <Button
                 onClick={async function E() {
-                    await mainDrahClient.runLocalisation({ csv });
+                    await drahMainClient.runLocalisation({ csv });
                 }}
             >
                 Run localisation
