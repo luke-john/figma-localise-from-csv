@@ -2138,10 +2138,10 @@ drah-client@0.2.1:
   dependencies:
     drah-shared "0.2.0"
 
-drah-figma@^0.3.0:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/drah-figma/-/drah-figma-0.3.0.tgz#0d8c50c9c24815631a7ba5ae8a8ca8c86942bb2e"
-  integrity sha512-jCgiqNS2XqDVNNiLUW/kKeAeuUqGfNIrooA/9FMfgZG6wpCFaBmPwYLNXkP8iv2KrHvikyg52JQapQkcMJRkGQ==
+drah-figma@^0.4.0:
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/drah-figma/-/drah-figma-0.4.0.tgz#47535475e32afdf4742dab14158a4fc6112d6263"
+  integrity sha512-KATpzh6BB2Ix5fB6xOKhM/fr5LAka4ov4mzIljwJI86wE4+PMTOPGeAFYbg0l48NO5wlbA8OusHvZsniGFW9cQ==
   dependencies:
     drah-client "0.2.1"
     drah-server "0.2.0"

@@ -53,7 +53,7 @@
         "typescript": "^4.0.2"
     },
     "dependencies": {
-        "drah-figma": "^0.3.0",
+        "drah-figma": "^0.4.0",
         "js-csvparser": "^1.5.0",
         "react-figma-plugin-ds": "^2.0.5"
     }
