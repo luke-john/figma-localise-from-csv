@@ -1,27 +1,28 @@
 import * as React from 'react';
 import * as ReactDom from 'react-dom';
+import { Button, Textarea } from 'react-figma-plugin-ds';
+import 'react-figma/rpc';
+import { View, Text, render } from 'react-figma';
 
 import 'react-figma-plugin-ds/figma-plugin-ds.css';
-
-import { CsvData, CsvLoader } from './CsvLoader';
-import { RunLocalisation } from './RunLocalisation';
+// import { drahMainClient } from './drahUI';
 
 import './ui.scss';
 
 function App() {
-    const [csv, _setCsv] = React.useState<CsvData>();
-
-    const csvLoaded = csv !== undefined;
-
-    function setCsv(csvData: CsvData) {
-        // :thinking: For more resilience we could wipe sourceAndTranslationColumns if they were previously set, but do not exist on the new csvData
-        _setCsv(csvData);
+    const [code, setCode] = React.useState('');
+    function doThing(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+        render(
+            <View>
+                <Text>Hello world!</Text>
+            </View>
+        );
     }
 
     return (
         <div className="app">
-            <CsvLoader csvLoaded={csvLoaded} setCsv={setCsv} />
-            {csvLoaded && <RunLocalisation csv={csv} />}
+            <Textarea placeholder="code" rows={5} onChange={(value) => setCode(value)} defaultValue={code} />
+            <Button onClick={doThing}>Do thing</Button>
         </div>
     );
 }

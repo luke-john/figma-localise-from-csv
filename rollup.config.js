@@ -4,6 +4,7 @@ const htmlBundle = require('rollup-plugin-html-bundle');
 const nodeResolve = require('@rollup/plugin-node-resolve').nodeResolve;
 const commonjs = require('@rollup/plugin-commonjs');
 const replace = require('@rollup/plugin-replace');
+const builtins = require('rollup-plugin-node-builtins');
 
 // import builtins from 'rollup-plugin-node-builtins';
 import postcss from 'rollup-plugin-postcss';
@@ -34,7 +35,7 @@ export default [
             file: 'dist/main.js',
             format: 'cjs',
         },
-        plugins: [commonjs(), nodeResolve(), rollupTypescript2()],
+        plugins: [commonjs(), nodeResolve(), rollupTypescript2(), builtins()],
     },
     {
         input: 'src/ui/ui.tsx',
@@ -46,8 +47,9 @@ export default [
         plugins: [
             replace({
                 'process.env.NODE_ENV': JSON.stringify(isProd ? 'production' : 'development'),
+                'process.env.REACT_FIGMA_EXPERIMENTAL': true,
             }),
-            // builtins(),
+            builtins(),
             commonjs(),
             nodeResolve(),
             rollupTypescript2(),
